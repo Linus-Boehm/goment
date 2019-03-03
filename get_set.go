@@ -214,6 +214,9 @@ func (g *Goment) SetDay(day int) *Goment {
 
 // SetWeekday sets the day of the week according to the locale.
 func (g *Goment) SetWeekday(weekday int) *Goment {
+	if weekday >= 0 && weekday <= 6 {
+		return g.SetDay(weekday)
+	}
 	return g
 }
 

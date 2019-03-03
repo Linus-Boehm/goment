@@ -47,6 +47,16 @@ func TestStartOfISOWeek(t *testing.T) {
 	}
 }
 
+func TestStartOfWeek(t *testing.T) {
+	start := time.Date(2017, 9, 3, 0, 0, 0, 0, time.UTC) //Sunday
+
+	lib, err := New("2017-09-07 13:45:12")
+	if assert.NoError(t, err) {
+		lib.StartOf("week")
+		assert.True(t, start.Equal(lib.ToTime()))
+	}
+}
+
 func TestStartOfDay(t *testing.T) {
 	start := time.Date(2012, 2, 28, 0, 0, 0, 0, time.UTC)
 
