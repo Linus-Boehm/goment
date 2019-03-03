@@ -478,6 +478,27 @@ func TestSetISOWeekdayOutOfRange(t *testing.T) {
 		assert.Equal(t, lib.Date(), 4)
 	}
 }
+func TestSetWeekday(t *testing.T) {
+	lib, err := New("2016-09-05")
+	if assert.NoError(t, err) {
+		assert.Equal(t, 1, lib.Day()) // Monday
+		lib.SetWeekday(3)             // Wednesday
+		assert.Equal(t, 7, lib.Date())
+		assert.Equal(t, 3, lib.Day())
+		lib.SetWeekday(0) // Sunday
+		assert.Equal(t, 4, lib.Date())
+	}
+}
+
+func TestSetWeekdayOutOfRange(t *testing.T) {
+	lib, err := New("2016-09-04") //Sunday
+	if assert.NoError(t, err) {
+		lib.SetWeekday(-1)
+		assert.Equal(t, lib.Date(), 4)
+		lib.SetWeekday(8)
+		assert.Equal(t, lib.Date(), 4)
+	}
+}
 
 func TestSetDayOfYear(t *testing.T) {
 	lib, err := New("2000-01-01") // Leap year
