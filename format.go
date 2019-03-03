@@ -2,11 +2,11 @@ package goment
 
 import (
 	"fmt"
+	"github.com/Linus-Boehm/goment/internal/regexps"
 	"regexp"
 	"strconv"
 	"strings"
 
-	"github.com/nleeper/goment/internal/regexps"
 )
 
 // Thanks to https://github.com/go-shadow/moment/blob/master/moment_parser.go for help on formatReplacements and regex.
@@ -188,7 +188,7 @@ func ordinal(x int) string {
 }
 
 func convertToGoLayout(layout string) string {
-	bracketMatch := regexps.BracketRegex.FindAllString(layout, -1)
+	bracketMatch := goment.BracketRegex.FindAllString(layout, -1)
 	bracketsFound := len(bracketMatch) > 0
 
 	if bracketsFound {
@@ -198,7 +198,7 @@ func convertToGoLayout(layout string) string {
 	}
 
 	var match [][]int
-	if match = regexps.TokenRegex.FindAllStringIndex(layout, -1); match == nil {
+	if match = goment.TokenRegex.FindAllStringIndex(layout, -1); match == nil {
 		return layout
 	}
 

@@ -1,4 +1,4 @@
-package regexps
+package goment
 
 import "regexp"
 
